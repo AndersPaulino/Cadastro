@@ -8,31 +8,68 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    static List<Pessoas> pessoas = new ArrayList<>();
+    static List<Endereco> enderecos = new ArrayList<>();
     public static void main(String[] args) {
 
-        List<Pessoas> pessoas = new ArrayList<>();
-        List<Endereco> enderecos = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
 
-        for (int i =0; i<3; i++) {
+        int opcao = 1;
 
-            System.out.println("Digite nome e idade!");
-            String nome = scanner.next();
-            int idade = scanner.nextInt();
-            // for (int j=0; j<2; j++){
-            System.out.println("Digite nome da rua e numero");
-            String rua = scanner.next();
-            int numero = scanner.nextInt();
-            enderecos.add(new Endereco(rua, numero));
-            //}
-            pessoas.add(new Pessoas(nome,idade,enderecos));
-            //scanner.close();
+        while (opcao != 0) {
+            menu();
+            opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    cadastro();
+                    break;
+                case 2:
+                    buscar();
+                    break;
+                case 0:
+                    System.out.println("Saindo do programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
         }
-       for (int i = 0; i < pessoas.size(); i++){
-           System.out.println("Nome: " + pessoas.get(i).getNome());
-           System.out.println("Idade: " + pessoas.get(i).getIdade());
-           System.out.println("Rua: " + enderecos.get(i).getRua());
-           System.out.println("Numero: " + enderecos.get(i).getNumero());
-       }
+       scanner.close();
+    }
+
+    public static void menu() {
+        System.out.println("Menu");
+        System.out.println("1 - Cadastrar");
+        System.out.println("2 - Buscar");
+        System.out.println("0 - Sair");
+        System.out.println("Digite o número da opção desejada:");
+    }
+    public static void cadastro() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Cadastrar");
+        System.out.println("Digite o Nome!");
+        String nome = scanner.next();
+        System.out.println("Digite a Idade!");
+        int idade = scanner.nextInt();
+        System.out.println("Digite o numero de endereços!");
+        int scn = scanner.nextInt();
+        for (int j=0; j<scn; j++){
+        System.out.println("Digite nome da rua!");
+        String rua = scanner.next();
+        System.out.println("Digite o Numero!");
+        int numero = scanner.nextInt();
+        enderecos.add(new Endereco(rua, numero));
+        }
+        pessoas.add(new Pessoas(nome,idade,enderecos));
+    }
+    public static void buscar() {
+        for (int i = 0; i < pessoas.size(); i++){
+            System.out.println("Nome: " + pessoas.get(i).getNome());
+            System.out.println("Idade: " + pessoas.get(i).getIdade());
+            System.out.println("Rua: " + enderecos.get(i).getRua());
+            System.out.println("Numero: " + enderecos.get(i).getNumero());
+        }
     }
 }
