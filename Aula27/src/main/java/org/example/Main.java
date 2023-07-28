@@ -65,11 +65,26 @@ public class Main {
         pessoas.add(new Pessoas(nome,idade,enderecos));
     }
     public static void buscar() {
-        for (int i = 0; i < pessoas.size(); i++){
-            System.out.println("Nome: " + pessoas.get(i).getNome());
-            System.out.println("Idade: " + pessoas.get(i).getIdade());
-            System.out.println("Rua: " + enderecos.get(i).getRua());
-            System.out.println("Numero: " + enderecos.get(i).getNumero());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome da pessoa para buscar:");
+        String nomeBusca = scanner.next();
+        boolean pessoaEncontrada = false;
+        for (Pessoas pessoa : pessoas) {
+            if (pessoa.getNome().equalsIgnoreCase(nomeBusca)) {
+                System.out.println("Pessoa encontrada:");
+                System.out.println("Nome: " + pessoa.getNome());
+                System.out.println("Idade: " + pessoa.getIdade());
+                List<Endereco> enderecosPessoa = pessoa.getEndereco();
+                for (Endereco endereco : enderecosPessoa) {
+                    System.out.println("Rua: " + endereco.getRua());
+                    System.out.println("Numero: " + endereco.getNumero());
+                }
+                pessoaEncontrada = true;
+                break;
+            }
+        }
+        if (!pessoaEncontrada) {
+            System.out.println("Pessoa não encontrada.");
         }
     }
 }
