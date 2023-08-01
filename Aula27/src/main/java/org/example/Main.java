@@ -10,10 +10,9 @@ import java.util.Scanner;
 public class Main {
     static List<Pessoas> pessoas = new ArrayList<>();
     static List<Endereco> enderecos = new ArrayList<>();
+
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-
-
-        Scanner scanner = new Scanner(System.in);
 
         int opcao = 1;
 
@@ -46,26 +45,26 @@ public class Main {
         System.out.println("Digite o número da opção desejada:");
     }
     public static void cadastro() {
-        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
 
         System.out.println("Cadastrar");
         System.out.println("Digite o Nome!");
-        String nome = scanner.next();
+        String nome = scanner.nextLine();
         System.out.println("Digite a Idade!");
         int idade = scanner.nextInt();
         System.out.println("Digite o numero de endereços!");
         int scn = scanner.nextInt();
         for (int j=0; j<scn; j++){
-        System.out.println("Digite nome da rua!");
-        String rua = scanner.next();
-        System.out.println("Digite o Numero!");
-        int numero = scanner.nextInt();
-        enderecos.add(new Endereco(rua, numero));
+            scanner.nextLine();
+            System.out.println("Digite nome da rua!");
+            String rua = scanner.nextLine();
+            System.out.println("Digite o Numero!");
+            int numero = scanner.nextInt();
+            enderecos.add(new Endereco(rua, numero));
         }
         pessoas.add(new Pessoas(nome,idade,enderecos));
     }
     public static void buscar() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome da pessoa para buscar:");
         String nomeBusca = scanner.next();
         boolean pessoaEncontrada = false;
