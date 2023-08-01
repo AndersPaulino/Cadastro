@@ -53,8 +53,10 @@ public class Main {
     public static void cadastro() {
         scanner.nextLine();
 
-        System.out.println("Cadastrar");
-        System.out.println("Digite o Nome!");
+        System.out.println("*-----------------------------------*");
+        System.out.println("|             Cadastrar!            |");
+        System.out.println("*-----------------------------------*");
+        System.out.println("            Digite o Nome!           ");
         String nome = scanner.nextLine();
         System.out.println("Digite a Idade!");
         int idade = scanner.nextInt();
@@ -75,12 +77,15 @@ public class Main {
 
         int i=0;
 
+        System.out.println("*-----------------------------------*");
+        System.out.println("|          Buscar por Nome!         |");
+        System.out.println("*-----------------------------------*");
         System.out.println("Digite o nome da pessoa para buscar:");
         String nomeBusca = scanner.nextLine();
         boolean pessoaEncontrada = false;
         for (Pessoas pessoa : pessoas) {
             if (pessoa.getNome().equalsIgnoreCase(nomeBusca)) {
-                System.out.println("Pessoa encontrada:");
+                System.out.println("Pessoa encontrada!");
                 System.out.println("Nome: " + pessoa.getNome());
                 System.out.println("Idade: " + pessoa.getIdade());
                 List<Endereco> enderecosPessoa = pessoa.getEndereco();
@@ -100,6 +105,23 @@ public class Main {
         }
     }
     public static void listarTodos(){
+        scanner.nextLine();
 
+        System.out.println("*-----------------------------------*");
+        System.out.println("|           Listar Todos!           |");
+        System.out.println("*-----------------------------------*");
+
+        for (int i=0; i < pessoas.size(); i++){
+            System.out.println("---------------------------------");
+            System.out.println("       Cadastro número " + (i+1) + "          ");
+            System.out.println("Nome: " + pessoas.get(i).getNome());
+            System.out.println("Idade: " + pessoas.get(i).getIdade());
+            for (int j=0; j < pessoas.get(i).getEndereco().size(); j++){
+                System.out.println("  Endereço " + (j+1));
+                System.out.println("  Rua: " + enderecos.get(j).getRua());
+                System.out.println("  Numero: " + enderecos.get(j).getNumero());
+                System.out.println("---------------------------------");
+            }
+        }
     }
 }
