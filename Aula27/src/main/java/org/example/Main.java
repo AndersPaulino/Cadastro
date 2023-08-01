@@ -27,6 +27,9 @@ public class Main {
                 case 2:
                     buscar();
                     break;
+                case 3:
+                    listarTodos();
+                    break;
                 case 0:
                     System.out.println("Saindo do programa...");
                     break;
@@ -38,11 +41,14 @@ public class Main {
     }
 
     public static void menu() {
-        System.out.println("Menu");
-        System.out.println("1 - Cadastrar");
-        System.out.println("2 - Buscar");
-        System.out.println("0 - Sair");
-        System.out.println("Digite o número da opção desejada:");
+        System.out.println("*---------------Menu----------------*");
+        System.out.println("|-----------------------------------|");
+        System.out.println("| 1 -         Cadastrar             |");
+        System.out.println("| 2 -      Buscar por Nome!         |");
+        System.out.println("| 3 -       Listar Todos!           |");
+        System.out.println("| 0 -           Sair                |");
+        System.out.println("*-----------------------------------*");
+        System.out.println("Digite o número da opção desejada: ");
     }
     public static void cadastro() {
         scanner.nextLine();
@@ -65,8 +71,12 @@ public class Main {
         pessoas.add(new Pessoas(nome,idade,enderecos));
     }
     public static void buscar() {
+        scanner.nextLine();
+
+        int i=0;
+
         System.out.println("Digite o nome da pessoa para buscar:");
-        String nomeBusca = scanner.next();
+        String nomeBusca = scanner.nextLine();
         boolean pessoaEncontrada = false;
         for (Pessoas pessoa : pessoas) {
             if (pessoa.getNome().equalsIgnoreCase(nomeBusca)) {
@@ -75,8 +85,11 @@ public class Main {
                 System.out.println("Idade: " + pessoa.getIdade());
                 List<Endereco> enderecosPessoa = pessoa.getEndereco();
                 for (Endereco endereco : enderecosPessoa) {
-                    System.out.println("Rua: " + endereco.getRua());
-                    System.out.println("Numero: " + endereco.getNumero());
+                    System.out.println(" Endereço " + (i+1));
+                    System.out.println("  Rua: " + endereco.getRua());
+                    System.out.println("  Numero: " + endereco.getNumero());
+                    System.out.println("---------------------------------");
+                    i++;
                 }
                 pessoaEncontrada = true;
                 break;
@@ -85,5 +98,8 @@ public class Main {
         if (!pessoaEncontrada) {
             System.out.println("Pessoa não encontrada.");
         }
+    }
+    public static void listarTodos(){
+
     }
 }
