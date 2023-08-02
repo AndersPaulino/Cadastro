@@ -77,50 +77,58 @@ public class Main {
 
         int i=0;
 
-        System.out.println("*-----------------------------------*");
-        System.out.println("|          Buscar por Nome!         |");
-        System.out.println("*-----------------------------------*");
-        System.out.println("Digite o nome da pessoa para buscar:");
-        String nomeBusca = scanner.nextLine();
-        boolean pessoaEncontrada = false;
-        for (Pessoas pessoa : pessoas) {
-            if (pessoa.getNome().equalsIgnoreCase(nomeBusca)) {
-                System.out.println("Pessoa encontrada!");
-                System.out.println("Nome: " + pessoa.getNome());
-                System.out.println("Idade: " + pessoa.getIdade());
-                List<Endereco> enderecosPessoa = pessoa.getEndereco();
-                for (Endereco endereco : enderecosPessoa) {
-                    System.out.println(" Endereço " + (i+1));
-                    System.out.println("  Rua: " + endereco.getRua());
-                    System.out.println("  Numero: " + endereco.getNumero());
-                    System.out.println("---------------------------------");
-                    i++;
+
+        if (pessoas.isEmpty()){
+            System.out.println("Não existem pessoas cadastradas!");
+        }else {
+            System.out.println("*-----------------------------------*");
+            System.out.println("|          Buscar por Nome!         |");
+            System.out.println("*-----------------------------------*");
+            System.out.println("Digite o nome da pessoa para buscar:");
+            String nomeBusca = scanner.nextLine();
+            boolean pessoaEncontrada = false;
+            for (Pessoas pessoa : pessoas) {
+                if (pessoa.getNome().equalsIgnoreCase(nomeBusca)) {
+                    System.out.println("Pessoa encontrada!");
+                    System.out.println("Nome: " + pessoa.getNome());
+                    System.out.println("Idade: " + pessoa.getIdade());
+                    List<Endereco> enderecosPessoa = pessoa.getEndereco();
+                    for (Endereco endereco : enderecosPessoa) {
+                        System.out.println(" Endereço " + (i + 1));
+                        System.out.println("  Rua: " + endereco.getRua());
+                        System.out.println("  Numero: " + endereco.getNumero());
+                        System.out.println("-------------------------------------");
+                        i++;
+                    }
+                    pessoaEncontrada = true;
+                    break;
                 }
-                pessoaEncontrada = true;
-                break;
             }
-        }
-        if (!pessoaEncontrada) {
-            System.out.println("Pessoa não encontrada.");
+            if (!pessoaEncontrada) {
+                System.out.println("Pessoa não encontrada.");
+            }
         }
     }
     public static void listarTodos(){
         scanner.nextLine();
+        if (pessoas.isEmpty()){
+            System.out.println("Não existem pessoas cadastradas!");
+        }else {
+            System.out.println("*-----------------------------------*");
+            System.out.println("|           Listar Todos!           |");
+            System.out.println("*-----------------------------------*");
 
-        System.out.println("*-----------------------------------*");
-        System.out.println("|           Listar Todos!           |");
-        System.out.println("*-----------------------------------*");
-
-        for (int i=0; i < pessoas.size(); i++){
-            System.out.println("---------------------------------");
-            System.out.println("       Cadastro número " + (i+1) + "          ");
-            System.out.println("Nome: " + pessoas.get(i).getNome());
-            System.out.println("Idade: " + pessoas.get(i).getIdade());
-            for (int j=0; j < pessoas.get(i).getEndereco().size(); j++){
-                System.out.println("  Endereço " + (j+1));
-                System.out.println("  Rua: " + enderecos.get(j).getRua());
-                System.out.println("  Numero: " + enderecos.get(j).getNumero());
-                System.out.println("---------------------------------");
+            for (int i = 0; i < pessoas.size(); i++) {
+                System.out.println("-------------------------------------");
+                System.out.println("       Cadastro número " + (i + 1) + "          ");
+                System.out.println("Nome: " + pessoas.get(i).getNome());
+                System.out.println("Idade: " + pessoas.get(i).getIdade());
+                for (int j = 0; j < pessoas.get(i).getEndereco().size(); j++) {
+                    System.out.println("  Endereço " + (j + 1));
+                    System.out.println("  Rua: " + enderecos.get(j).getRua());
+                    System.out.println("  Numero: " + enderecos.get(j).getNumero());
+                    System.out.println("-------------------------------------");
+                }
             }
         }
     }
